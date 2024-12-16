@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\Api\DataController;
+use App\Http\Controllers\TrainingController;
+
+Route::post('/training', [TrainingController::class, 'store']);
+Route::get('/training', [TrainingController::class, 'index2']);
+Route::get('/training/{id}', [TrainingController::class, 'show']);
 
 Route::middleware(['validate_api_key'])->group(function () {
     Route::get('/data', [DataController::class, 'index']); // Fetch data
@@ -24,3 +29,4 @@ Route::middleware(['validate_api_key'])->group(function () {
     Route::put('/data/{id}', [DataController::class, 'update']); // Update record
     Route::delete('/data/{id}', [DataController::class, 'destroy']); // Delete record
 });
+

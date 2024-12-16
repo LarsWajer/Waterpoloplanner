@@ -37,5 +37,29 @@ class DatabaseSeeder extends Seeder
         'afbeeldingen' => json_encode(['url' => 'http://example.com/image.png']),
     ]);
 
+    $oefeningIDs = [4, 2, 3];
+        $userID = 1;
+        DB::table('training')->insert([
+            'name' => "test",
+            'beschrijving' => "Testen of hij het doet",
+            'enabled' => True,
+            'oefeningIDs' => json_encode($oefeningIDs), // JSON met oefening IDs
+            'userID' => $userID,
+            'ratings' => NULL, // Willekeurige rating
+            'totale_duur' => 15,
+        ]);
+
+        $oefeningIDs2 = [4, 5, ];
+        $userID = 1;
+        DB::table('training')->insert([
+            'name' => "Hete aardappel 2.0",
+            'beschrijving' => "Random teksstttt",
+            'enabled' => True,
+            'oefeningIDs' => json_encode($oefeningIDs2), // JSON met oefening IDs
+            'userID' => $userID,
+            'ratings' => NULL, // Willekeurige rating
+            'totale_duur' => 30,
+        ]);
+
 }
 }

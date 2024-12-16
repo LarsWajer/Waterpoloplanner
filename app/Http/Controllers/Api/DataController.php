@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Oefening; // Replace with your model
+use App\Models\Oefening;
+use App\Models\Training;
 
 class DataController extends Controller
 {
@@ -56,4 +57,9 @@ class DataController extends Controller
         $Oefening->delete();
         return response()->json(['message' => 'Record deleted']);
     }
+
+    public function store2(Request $request)
+{
+    dd('Controller is aangesproken');  // Dit zou je moeten helpen te zien of de controller wordt aangeroepen
+}
 }
