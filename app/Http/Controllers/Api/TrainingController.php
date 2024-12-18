@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Training;
+use App\Http\Controllers\Controller;
 use App\Models\Oefening;
+use App\Models\Training;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class TrainingController extends Controller
 {
 
-    
+
 
     public function store(Request $request)
     {
@@ -33,13 +35,13 @@ class TrainingController extends Controller
         // ]);
 
         // Terugsturen van succesbericht
-        return response()->json([
-            'message' => 'Training succesvol aangemaakt!',
-            'training' => $training,
-        ], 201);
+//        return response()->json([
+//            'message' => 'Training succesvol aangemaakt!',
+//            'training' => $training,
+//        ], 201);
     }
 
-    public function index()
+    public function indexidk()
     {
     // Haal de eerste training op
     $training = Training::first();
@@ -54,7 +56,7 @@ class TrainingController extends Controller
     return view('index', compact('training', 'oefeningen'));
     }
 
-    public function index2()
+    public function index(): JsonResponse
     {
         // Haal alle trainingen op
         $trainings = Training::all();

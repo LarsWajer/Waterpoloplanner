@@ -12,21 +12,29 @@ class DataController extends Controller
     // Fetch requested Oefening
     public function index(Request $request)
     {
-        // Query parameters to filter Oefening
         $query = Oefening::query();
 
+        // Select specific fields
         if ($request->has('field')) {
-            $query->select($request->get('field')); // Select specific fields
+            $fields = explode(',', $request->get('field'));
+            $query->select($fields);
         }
 
+        // Apply conditions, including handling array values
         if ($request->has('conditions')) {
             foreach ($request->get('conditions') as $column => $value) {
-                $query->where($column, $value); // Apply conditions
+                if ($column === 'id') {
+                    // Handle IDs as an array
+                    $query->whereIn('id', explode(',', $value));
+                } else {
+                    $query->where($column, $value);
+                }
             }
         }
 
         return response()->json($query->get());
     }
+
 
     // Fetch a specific record
     public function show($id)
